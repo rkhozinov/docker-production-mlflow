@@ -1,0 +1,16 @@
+FROM python:3.8.6-slim
+
+RUN apt-get update && apt-get install -y \
+  curl \
+  git  \
+  unzip \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN /bin/bash -c 'curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh; \
+    chmod +x Miniconda3-latest-Linux-x86_64.sh; \
+    echo yes | ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda -f; \
+    rm Miniconda3-latest-Linux-x86_64.sh'
+RUN /bin/bash -c '/opt/miniconda/bin/conda init'
+RUN /bin/bash -c 'source ~/.bashrc; conda install -c conda-forge mlflow'
+
+ENTRYPOINT ["mlflow", "server"]
