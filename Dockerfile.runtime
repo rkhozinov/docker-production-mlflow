@@ -11,6 +11,5 @@ RUN /bin/bash -c 'curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest
     echo yes | ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda -f; \
     rm Miniconda3-latest-Linux-x86_64.sh'
 RUN /bin/bash -c '/opt/miniconda/bin/conda init'
-RUN /bin/bash -c 'source ~/.bashrc; conda install -c conda-forge mlflow'
+RUN /bin/bash -c 'source ~/.bashrc; conda install -c conda-forge mlflow awscli'
 
-ENTRYPOINT ["mlflow", "server"]
