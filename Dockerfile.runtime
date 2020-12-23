@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
 RUN /bin/bash -c 'curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh; \
     chmod +x Miniconda3-latest-Linux-x86_64.sh; \
     echo yes | ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda -f; \
-    rm Miniconda3-latest-Linux-x86_64.sh'
+    rm Miniconda3-latest-Linux-x86_64.sh; \
+    curl -fsSL https://get.docker.com -o get-docker.sh;\ 
+    sh get-docker.sh'
 RUN /bin/bash -c '/opt/miniconda/bin/conda init'
 RUN /bin/bash -c 'source ~/.bashrc; conda install -c conda-forge mlflow awscli'
 
